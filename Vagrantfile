@@ -7,9 +7,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'ubuntu/trusty64'
 
   5.times do |i|
-	  config.vm.define "host#{i}" do |n|
-	    n.vm.hostname = "host#{i}"
-	    n.vm.network 'private_network', ip: "192.168.35.#{10+i}"
+    host="192.168.35.#{10+i}"
+    name=host.gsub '.', '-'
+	  config.vm.define name do |n|
+	    n.vm.hostname = name
+	    n.vm.network 'private_network', ip: host
+      n.vm.provider "virtualbox" do |v|
+        v.memory = 256
+        v.cpus = 2
+      end
 	  end
   end
 end

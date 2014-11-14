@@ -1,0 +1,6 @@
+- apt: name=postfix
+- lineinfile: > 
+    dest=/etc/postfix/main.cf 
+    regexp=^inet_interfaces 
+    line="inet_interfaces = lo" 
+  notify: restart postfix

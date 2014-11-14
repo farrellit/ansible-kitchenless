@@ -1,0 +1,10 @@
+---
+- hosts: vagrant
+  sudo: true
+  tasks:
+    - apt: upgrade=full update_cache=true
+
+- hosts: vagrant
+  sudo: true
+  roles:
+    - postfix
